@@ -23,18 +23,18 @@ async function removeContact(contactId) {
   for (let i = 0; i < contacts.length; i++) {
     if (contacts[i].id === contactId) {
       contact = contacts.splice(i, 1);
-      await fs.writeFile(contactsPath, JSON.stringify(contacts));
+      await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
     }
   }
 
-  return contact;
+  return contact[0];
 }
 
 async function addContact(name, email, phone) {
   const contacts = await listContacts();
   let contact = { id: nanoid(), name, email, phone };
   contacts.push(contact);
-  await fs.writeFile(contactsPath, JSON.stringify(contacts));
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
 
   return contact;
 }
