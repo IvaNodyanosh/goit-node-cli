@@ -27,7 +27,10 @@ async function removeContact(contactId) {
     }
   }
 
-  return contact[0];
+  if (contact) {
+    return contact[0];
+  }
+  return null;
 }
 
 async function addContact(name, email, phone) {
